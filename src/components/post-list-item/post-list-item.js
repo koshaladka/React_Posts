@@ -1,28 +1,38 @@
-import React from "react";
+import { render } from "@testing-library/react";
+import React, {Component} from "react";
 
 import './post-list-item.css';
 
-const PostListItem = () => {
-    return (
-        <li className="app-list-item d-flex justify-content-between">
-            <span className="app-list-item-label">
-                Привет Алена!
-            </span>
-            <div className="d-flex justify-content-center align-items-center">
-                <button 
-                type="button" 
-                className="btn-star btn-sm">
-                    <i className="fa fa-star"></i>
-                </button>
-                <button 
-                type="button" 
-                className="btn-trash btn-sm">
-                    <i className="fa fa-trash-o"></i>
-                </button>
-                <i className="fa fa-heart"></i>
+export default class PostListItem extends Component {
+    render () {
+        const {label, important = false} =this.props;
+
+        let classNames= 'app-list-item d-flex justify-content-between';
+        if (important) {
+            classNames +=' important';
+        }
+    
+
+        return (
+            <div className={classNames}>
+                <span className="app-list-item-label">
+                    {label}
+                </span>
+                <div className="d-flex justify-content-center align-items-center">
+                    <button 
+                    type="button" 
+                    className="btn-star btn-sm">
+                        <i className="fa fa-star"></i>
+                    </button>
+                    <button 
+                    type="button" 
+                    className="btn-trash btn-sm">
+                        <i className="fa fa-trash-o"></i>
+                    </button>
+                    <i className="fa fa-heart"></i>
+                </div>
             </div>
-        </li>
-    )
+        )
+    }
 }
 
-export default PostListItem;
